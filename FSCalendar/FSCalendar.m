@@ -494,6 +494,12 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 {
     if (self.floatingMode) {
         if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+            if ([self.dataSource respondsToSelector:@selector(calendar:viewForMonthHeaderAtIndexPath:)]) {
+                UICollectionReusableView *headerView = [self.dataSource calendar:self viewForMonthHeaderAtIndexPath:indexPath];
+                if (headerView) {
+                    return headerView;
+                }
+            }
             FSCalendarStickyHeader *stickyHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
             stickyHeader.calendar = self;
             stickyHeader.month = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:indexPath.section toDate:[self.gregorian fs_firstDayOfMonth:_minimumDate] options:0];

@@ -103,6 +103,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date;
 
 /**
+ * Asks the dataSource for month header view
+ */
+- (UICollectionReusableView *)calendar: (FSCalendar *)calendar viewForMonthHeaderAtIndexPath: (NSIndexPath *)indexPath;
+
+/**
  * This function is deprecated
  */
 - (BOOL)calendar:(FSCalendar *)calendar hasEventForDate:(NSDate *)date FSCalendarDeprecated(-calendar:numberOfEventsForDate:);
